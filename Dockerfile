@@ -6,25 +6,34 @@ ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="sparklyballs"
 
-# package versions
-ARG LIDARR_VER="develop.0.2.0.224"
+# environment settings
+ARG DEBIAN_FRONTEND="noninteractive"
+ARG LIDARR_BRANCH="nightly"
 
 RUN \
+ echo "**** install jq ****" && \
+ apt-get update && \
+ apt-get install -y \
+	jq && \
  echo "**** install lidarr ****" && \
  mkdir -p /app/lidarr && \
- curl -o \
- /tmp/lidarr.tar.gz \
-	-L "https://ci.appveyor.com/api/buildjobs/32mn5y508u357fke/artifacts/Lidarr.${LIDARR_VER}.linux.tar.gz" && \
- tar xf \
+ lidarr_url=$(curl "https://services.lidarr.audio/v1/update/${LIDARR_BRANCH}/changes?os=linux" \
+	| jq -r '.[0].url') && \
+  curl -o \
+ /tmp/lidarr.tar.gz -L \
+	"${lidarr_url}" && \
+ tar ixzf \
  /tmp/lidarr.tar.gz -C \
 	/app/lidarr --strip-components=1 && \
  echo "**** cleanup ****" && \
  rm -rf \
-	/tmp/*
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
 
-# copy local files
+# copy local files
 COPY root/ /
 
-# ports and volumes
+# ports and volumes
 EXPOSE 8686
 VOLUME /config /downloads /music

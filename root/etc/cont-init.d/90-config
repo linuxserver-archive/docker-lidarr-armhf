@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bash
+
+echo '
+******************************************************
+******************************************************
+*                                                    *
+*                                                    *
+*          This image has been deprecated            *
+*                                                    *
+*           Use the multi-arch images at             *
+*                                                    *
+*              linuxserver/lidarr                    *
+*                                                    *
+*   https://hub.docker.com/r/linuxserver/lidarr      *
+*                                                    *
+*  https://github.com/linuxserver/docker-lidarr      *
+*                                                    *
+*                                                    *
+*                                                    *
+******************************************************
+******************************************************'

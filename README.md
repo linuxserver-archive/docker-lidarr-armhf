@@ -5,6 +5,8 @@
 [appurl]: https://github.com/lidarr/Lidarr
 [hub]: https://hub.docker.com/r/lsioarmhf/lidarr/
 
+THIS IMAGE IS DEPRECATED. PLEASE USE THE MULTI-ARCH IMAGES AT `linuxserver/lidarr`
+
 
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png?v=4&s=4000)][linuxserverurl]
 
@@ -108,6 +110,7 @@ Access the webui at `<your-ip>:8686`, for more information check out [Lidarr][ap
 
 |  Date | Changes |
 | :---: | --- |
+| 26.01.19 |  This image is deprecated. Please use the multi-arch images at linuxserver/lidarr |
 | 22.04.18 |  Switch to beta builds. |
 | 17.03.18 |  Add ENV XDG_CONFIG_HOME="/config/xdg" to Dockerfile for signalr fix. |
 | 27.02.18 |  Use json to query for new version. |
